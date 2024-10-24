@@ -1,0 +1,9 @@
+package bank_project;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+@WebServlet("/signin")
+public class Login extends HttpServlet
+{
+
+}
