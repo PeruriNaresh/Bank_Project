@@ -1,0 +1,26 @@
+package bank_project;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/signin")
+public class Login extends HttpServlet
+{
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
+		System.out.println("hello");
+	}
+	public static Connection createConnection()
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/user_details?createDatabaseIfNotExist=true&user='root'&password='root');
+	}
+}
