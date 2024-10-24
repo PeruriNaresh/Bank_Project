@@ -3,183 +3,190 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <Style>
+        body
+        {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgb(28, 34, 46);
+        }
+        .form-container {
+        width: 25vw;
+        border-radius: 0.75rem;
+        background-color: rgba(17, 24, 39, 1);
+        padding: 2rem;
+        color: rgba(243, 244, 246, 1);
+        margin: 7% 35%;
+        box-shadow: 0px 0px 10px white;
+        }
+
+        .title {
+        text-align: center;
+        color:  rgba(167, 139, 250, 1);
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 700;
+        }
+
+        .form {
+        margin-top: 1.5rem;
+        }
+
+        .input-group {
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        }
+
+        .input-group label {
+        display: block;
+        color: rgba(156, 163, 175, 1);
+        margin-bottom: 4px;
+        }
+
+        .input-group input {
+        width: 90%;
+        border-radius: 0.375rem;
+        border: 1px solid rgba(55, 65, 81, 1);
+        outline: 0;
+        background-color: rgba(17, 24, 39, 1);
+        padding: 0.75rem 1rem;
+        color: rgba(243, 244, 246, 1);
+        }
+
+        .input-group input:focus {
+        border-color: rgba(167, 139, 250);
+        }
+
+        .forgot {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        color: rgba(156, 163, 175,1);
+        margin: 8px 0 14px 0;
+        }
+
+        .forgot a,.signup a {
+        color: rgba(243, 244, 246, 1);
+        text-decoration: none;
+        font-size: 14px;
+        }
+
+        .forgot a:hover, .signup a:hover {
+        text-decoration: underline rgba(167, 139, 250, 1);
+        }
+
+        .sign {
+        display: block;
+        width: 100%;
+        background-color: rgba(167, 139, 250, 1);
+        padding: 0.75rem;
+        text-align: center;
+        color: rgba(17, 24, 39, 1);
+        border: none;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        }
+
+        .social-message {
+        display: flex;
+        align-items: center;
+        padding-top: 1rem;
+        }
+
+        .line {
+        height: 1px;
+        flex: 1 1 0%;
+        background-color: rgba(55, 65, 81, 1);
+        }
+
+        .social-message .message {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: rgba(156, 163, 175, 1);
+        }
+
+        .social-icons {
+        display: flex;
+        justify-content: center;
+        }
+
+        .social-icons .icon {
+        border-radius: 0.125rem;
+        padding: 0.75rem;
+        border: none;
+        background-color: transparent;
+        margin-left: 8px;
+        }
+
+        .social-icons .icon svg {
+        height: 1.25rem;
+        width: 1.25rem;
+        fill: #fff;
+        }
+
+        .signup {
+        text-align: center;
+        font-size: 0.75rem;
+        line-height: 1rem;
+        color: rgba(156, 163, 175, 1);
+        }
+
+    </Style>
+    <title>Forgot Password</title>
 </head>
-<style>
-/* From Uiverse.io by ammarsaa */ 
-body{
-background-color:black;
-}
-div{
-
-margin-left:35%;
-margin-top:10%;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 350px;
-  padding: 20px;
-  border-radius: 20px;
-  position: relative;
-  background-color: #1a1a1a;
-  color: #fff;
-  border: 1px solid #333;
-}
-
-.title {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  color: #00bfff;
-}
-
-.title::before {
-  width: 18px;
-  height: 18px;
-}
-
-.title::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
-}
-
-.title::before,
-.title::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: #00bfff;
-}
-
-
-
-
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 6px;
-}
-
-.form label {
-  position: relative;
-}
-
-.form label .input {
-  background-color: #333;
-  color: #fff;
-  width: 100%;
-  padding: 20px 05px 05px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
-}
-
-.form label .input + span {
-  color: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  left: 10px;
-  top: 0px;
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
-}
-
-.form label .input:placeholder-shown + span {
-  top: 12.5px;
-  font-size: 0.9em;
-}
-
-.form label .input:focus + span,
-.form label .input:valid + span {
-  color: #00bfff;
-  top: 0px;
-  font-size: 0.7em;
-  font-weight: 600;
-}
-
-.input {
-  font-size: medium;
-}
-
-.submit {
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transform: .3s ease;
-  background-color: #00bfff;
-}
-
-.submit:hover {
-  background-color: #00bfff96;
-}
-
-
-@keyframes pulse {
-  from {
-    transform: scale(0.9);
-    opacity: 1;
-  }
-
-  to {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
-</style>
 <body>
-<div>
-	<form class="form" action="forgot" method="post">     
-	    <label>
-	        <input class="input" type="email" placeholder="enter email" name="email"> 
-	    </label>
-	    <label>
-	        <input class="input" type="password" placeholder="enter password" name="password">
-	    </label>
-	    <label>
-	        <input class="input" type="password" placeholder="confirm password">
-	    </label>
-	    <p style="opacity:0;display:inline;" id="msg">passwords doesnot match</p>
-	    <button class="submit" disabled>Submit</button>
-	    <% 
+    <div class="form-container">
+        <p class="title">Forgot Password</p>
+        <form class="form" action="forgot" method="post">
+            <div class="input-group">
+                <label for="username">Email</label>
+                <input type="text" name="email" id="username" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                <label for="password">Password</label>
+                <input type="password" placeholder="confirm password">
+            </div>
+            <br>
+            <p style="opacity:0;display:inline;" id="msg">passwords doesnot match</p>
+            <br><br>
+            <button class="sign" disabled>Change Password</button>
+            <br>
+            <% 
 	    String msg=(String)request.getAttribute("msg");
                	if(msg!=null)
                 {
                 	out.println("<p>"+msg+"</p>");
          		}%>
-	</form>
-</div>
-<script>
-	var inputs=document.querySelectorAll("input");
-	var msg=document.getElementById("msg");
-	var confirm=inputs[2];
-	var submit=document.querySelector("button");
-	confirm.addEventListener("change",()=>
-	{
-		var pass= inputs[1].value;
-		if(pass!=confirm.value)
-		{
-			msg.style.opacity=1;
-		}
-		else
-		{
-			msg.style.opacity=0;
-			submit.removeAttribute("disabled");
-		}
-	});
-</script>
+        </form>
+    </div>
+    <script>
+        var inputs=document.querySelectorAll("input");
+        var msg=document.getElementById("msg");
+        var confirm=inputs[2];
+        var submit=document.querySelector("button");
+        confirm.addEventListener("input",()=>
+        {
+            var pass= inputs[1].value;
+            if(pass!=confirm.value)
+            {
+                console.log("hello");
+                msg.style.opacity=1;
+            }
+            else
+            {
+                msg.style.opacity=0;
+                submit.removeAttribute("disabled");
+            }
+        });
+    </script>
 </body>
 </html>
