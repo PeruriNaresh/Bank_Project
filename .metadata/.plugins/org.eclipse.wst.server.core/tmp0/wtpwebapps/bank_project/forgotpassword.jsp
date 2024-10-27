@@ -11,7 +11,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: rgb(28, 34, 46);
+            background: linear-gradient(to right, black, purple );
         }
         .form-container {
         width: 25vw;

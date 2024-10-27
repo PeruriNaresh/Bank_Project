@@ -1,0 +1,34 @@
+package bank_project;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bank_dao.UserDao;
+@WebServlet("/delete")
+public class Delete extends HttpServlet
+{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
+		try 
+		{
+			int result=UserDao.deleteUser( req.getParameter("email"), req.getParameter("password"));
+			if(result>0)
+			{
+				System.out.println("account deleted succesfully!!");
+			}
+			else {
+				System.out.println("invalid credentials try again!!!");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

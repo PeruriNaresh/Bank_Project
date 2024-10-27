@@ -1,0 +1,36 @@
+package bank_project;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import bank_dao.BankDao;
+import bank_dto.Bank;
+@WebServlet("/bankaccount")
+public class CreateAccount extends HttpServlet
+{
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		Long accountno=Long.parseLong(req.getParameter("accountNumber"));
+		Long phone=Long.parseLong(req.getParameter("phone"));
+		String accounttype=req.getParameter("type");
+		String address=req.getParameter("address");
+		Long Aadharnumber=Long.parseLong(req.getParameter("aadhar"));
+		int balance=Integer.parseInt(req.getParameter("balance"));
+		String ifsccode =req.getParameter("ifsc");
+		BankDao dao=new BankDao();
+		
+		try {
+			dao.savedetails(new Bank(accountno,phone,accounttype,address,Aadharnumber,balance,ifsccode));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+

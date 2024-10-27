@@ -11,7 +11,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: rgb(28, 34, 46);
+            background: linear-gradient(to right, black, purple );
         }
         .form {
         display: flex;
@@ -27,8 +27,6 @@
         color: #fff;
         border: 1px solid #333;
         margin: 2% 35%;
-        z-index:-1;
-        position: absolute;
         }
 
         .title {
@@ -185,11 +183,11 @@
             <label for="username">Name</label>
             <input type="text" name="name" id="username" placeholder="Enter your name" required>
             <label for="mobile">Mobile</label>
-            <input type="number" name="phone" id="mobile" placeholder="Enter your phone number" required>
+            <input type="tel" name="phone" id="mobile" placeholder="Enter your phone number" minlength=10 maxlength=10 required>
             <label for="email">Email</label>
             <input type="text" name="email" id="email" placeholder="Enter your email" required>
             <label for="age">Age</label>
-            <input type="number" name="age" id="age" placeholder="Enter your age" required>
+            <input type="number" name="age" id="age" placeholder="Enter your age" min=18 required>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter password" required>
             <label for="confirm">Password</label>
@@ -197,7 +195,7 @@
             <p style="opacity:0;display:inline" id="msg">passwords doesnot match</p>
         </div>
         <button class="submit" disabled>Submit</button>
-        <%String msg= (String)request.getAttribute("msg");%>
+        <%String msg = (String)request.getAttribute("msg");%>
         <p style="display:inline;height:1vh;width:100;margin:0px"><%if(msg!=null)
         {
             out.println(msg);

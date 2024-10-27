@@ -1,0 +1,11 @@
+package bank_dto;
+
+public class TransactionsDto 
+{
+	private long senderAccount;
+	private long recieverAccount;
+	private int amount;
+	private String dr_cr;
+	private String date;
+	private String time;
+}

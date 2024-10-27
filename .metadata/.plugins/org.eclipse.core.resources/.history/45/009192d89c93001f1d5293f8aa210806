@@ -1,0 +1,59 @@
+package bank_project;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
+public class Otp {
+
+    public static void sendEmail(String recipient, String subject, String messageText) {
+        // Sender's email and password
+        final String senderEmail = "perurinaresh4@gmail.com";
+        final String senderPassword = "sai#naresh";
+
+        // SMTP Server configuration
+        Properties properties = new Properties();
+        System.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2 TLSv1.3");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "74.125.68.108");
+        System.setProperty("java.net.preferIPv4Stack", "true");
+        properties.put("proxySet", "false");
+        properties.put("mail.smtp.port", "587");
+
+
+        // Create session with authentication
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            // Create the message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject(subject);
+            message.setText(messageText);
+
+            // Send the email
+            Transport.send(message);
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void main(String[] args) {
+        String userEmail = "perurinaresh3@gmail.com";
+
+        // Send the OTP via email
+        String subject = "Your OTP Code";
+        String messageText = "Your OTP is: " + 1234 + ". Please use this to verify your account.";
+        sendEmail(userEmail, subject, messageText);
+    }
+}

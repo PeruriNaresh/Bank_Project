@@ -1,0 +1,67 @@
+package bank_project;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
+public class Otp {
+
+    public static void sendEmail(String recipient, String subject, String messageText) {
+        // Sender's email and app password
+        final String senderEmail = "batch4email@gmail.com"; // Your email
+        final String senderPassword = "batch@4321"; // Use App Password here
+
+        // SMTP Server configuration for Gmail
+        Properties properties = new Properties();
+        System.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.socketFactory.port", "587");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.debug", "true"); // Enable debugging output
+
+        // Disable proxy if necessary
+        System.setProperty("http.proxyHost", "");
+        System.setProperty("http.proxyPort", "");
+        System.setProperty("https.proxyHost", "");
+        System.setProperty("https.proxyPort", "");
+
+        // Set DNS to use Google DNS
+        System.setProperty("sun.net.inetaddr.ttl", "60"); // Cache DNS for 60 seconds
+
+        // Create session with authentication
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            // Create the message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject(subject);
+            message.setText(messageText);
+
+            // Send the email
+            Transport.send(message);
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        String userEmail = "perurinaresh3@gmail.com"; // Replace with a valid recipient email
+
+        // Send the OTP via email
+        String subject = "Your OTP Code";
+        String messageText = "Your OTP is: " + 1234 + ". Please use this to verify your account.";
+        sendEmail(userEmail, subject, messageText);
+    }
+}

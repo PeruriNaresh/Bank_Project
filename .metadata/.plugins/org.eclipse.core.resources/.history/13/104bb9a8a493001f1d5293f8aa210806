@@ -1,0 +1,66 @@
+package bank_project;
+
+import javax.mail.*; 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
+public class Otp {
+
+    public static void sendEmail(String recipient, String subject, String messageText) {
+        // Use the correct environment variable names
+        final String senderEmail = "batch4email@gmail.com"; // Environment variable name for email
+        final String senderPassword = "batch@4321"; // Environment variable name for password
+
+        // Check if the senderEmail and senderPassword are retrieved correctly
+        if (senderEmail == null || senderPassword == null) {
+            System.err.println("Sender email or password is not set in environment variables.");
+            return; // Exit the method if not set
+        }
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com"); // Trust the host
+        properties.put("mail.debug", "true"); // Enable debugging output
+
+        // Create session with authentication
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject(subject);
+            message.setText(messageText);
+
+            Transport.send(message);
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            System.err.println("Error while sending email: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        String userEmail = "perurinaresh3@gmail.com"; // Replace with a valid recipient email
+
+        // Debugging: Check recipient email
+        if (userEmail == null || userEmail.isEmpty()) {
+            System.err.println("Recipient email is null or empty.");
+            return; // Exit the program
+        }
+
+        // Send the OTP via email
+        String subject = "Your OTP Code";
+        String messageText = "Your OTP is: " + 1234 + ". Please use this to verify your account.";
+        sendEmail(userEmail, subject, messageText);
+    }
+}

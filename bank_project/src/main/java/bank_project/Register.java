@@ -23,7 +23,13 @@ public class Register extends HttpServlet
 		user=new User(req.getParameter("name"),Long.parseLong(req.getParameter("phone")),req.getParameter("email"),Integer.parseInt(req.getParameter("age")),req.getParameter("password"));
 		try {
 			int result= UserDao.registerUser(user);
-			if(result==1)
+			if(result==-1)
+			{
+				req.setAttribute("msg","phone number already exist!!");
+				RequestDispatcher rd=req.getRequestDispatcher("register.jsp");
+				rd.include(req, resp);
+			}
+			else if(result==1)
 			{
 				req.setAttribute("msg","congrats, account created, try logging in!!");
 				RequestDispatcher rd=req.getRequestDispatcher("register.jsp");

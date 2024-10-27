@@ -10,7 +10,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: rgb(28, 34, 46);
+            background: linear-gradient(to right, black, purple );
         }
         .form-container {
         width: 25vw;
@@ -139,6 +139,15 @@
 
     </Style>
     <title>Login</title>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward(); 
+        }
+        
+        setTimeout("preventBack()", 0);
+        
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
     <div class="form-container">

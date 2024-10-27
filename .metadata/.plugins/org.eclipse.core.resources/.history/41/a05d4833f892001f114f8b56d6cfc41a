@@ -1,0 +1,38 @@
+package bank_dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import bank_dto.Bank;
+
+public class BankDao {
+	public void createtable() throws Exception
+	{
+		Connection con=CreationofStatement();
+		Statement s=con.createStatement();
+		s.execute("Create TABLE IF NOT EXISTS bank_details ( account_number BIGINT PRIMARY KEY , phone_number BIGINT,account_type VARCHAR(50),address VARCHAR(45),aadhar_number BIGINT,balance INT)");
+
+	}
+	public Connection CreationofStatement() throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_db?createDatabaseIfNotExist=true", "root", "root");
+		return con;
+	}
+	public void savedeatils(Bank bank) throws Exception
+	{
+		Connection con=CreationofStatement();
+		createtable();
+		PreparedStatement ps=con.prepareStatement("insert into bank_details values(?,?,?,?,?,?)");
+		ps.setLong(1, bank.getAccountnumber());
+		ps.setLong(2, bank.getPhonenumber());
+		ps.setString(3, bank.getAccounttype());
+		ps.setString(4, bank.getAddress());
+		ps.setLong(5, bank.getAadharnumber());
+		ps.setInt(6, bank.getBalence());
+		ps.execute();
+		ps.close();
+		con.close();
+	}
+}
+

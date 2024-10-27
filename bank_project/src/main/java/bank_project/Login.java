@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bank_dao.BankDao;
 import bank_dao.UserDao;
+import bank_dto.Bank;
 
 @WebServlet("/signin")
 public class Login extends HttpServlet
@@ -38,12 +40,30 @@ public class Login extends HttpServlet
 			else if(result==1)
 			{
 				HttpSession session=req.getSession();
-				session.setAttribute("email", email);
-				RequestDispatcher home=req.getRequestDispatcher("https://www.instagram.com/naresh_peruri");
-//				home.forward(req, resp);
-				resp.sendRedirect("https://www.instagram.com/naresh_peruri");
+				session.setAttribute("user", UserDao.getUser(email));
+				Long mobile=UserDao.getUser(email).getMobile();
+				if(BankDao.getBank(mobile)!=null)
+				{
+					session.setAttribute("status", "created");
+				}
+				else {
+					session.setAttribute("status", "no");
+				}
+				if(BankDao.getBank(mobile)==null)
+				{
+					session.setAttribute("bank",new Bank());
+				}
+				else {
+					session.setAttribute("bank", BankDao.getBank(mobile));
+				}
+				RequestDispatcher home=req.getRequestDispatcher("Home.jsp");
+				home.forward(req, resp);
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

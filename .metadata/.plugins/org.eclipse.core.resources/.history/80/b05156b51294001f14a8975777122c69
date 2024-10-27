@@ -1,0 +1,31 @@
+package bank_dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import bank_dto.TransactionsDto;
+
+public class TransactionsDao 
+{
+	public static Connection createConnection() throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_db?createDatabaseIfNotExist=true&user=root&password=root");
+	}
+	public static void transactions(TransactionsDto transaction) {
+		Connection c=createConnection();
+		PreparedStatement ps=c.prepareStatement("create table if not exists transactions(id int auto_increment primary key,sender bigint,reciever bigint,amount int,date varchar(20), time varchar(20))");
+		ps.execute();
+		PreparedStatement ps2=c.prepareStatement("insert into table transactions(sender,reciever,amount,dr_cr,date,time) value=(?,?,?,?,?)");
+		ps2.setLong(1, transaction.getSenderAccount());
+		ps2.setLong(2, transaction.getRecieverAccount());
+		ps2.setInt(3, transaction.getAmount());
+		ps2.setString(4, transaction.getDate());
+		ps2.setString(5, transaction.getTime());
+		int result=ps2.executeUpdate();
+		ps2.close();
+		c.close();
+	}
+}
