@@ -11,7 +11,6 @@
 	width:100%;
 	height:100vh;
 	overflow:hidden;
-	background-image:linear-gradient(45deg,black,purple);
 	}
 	#container
 	{

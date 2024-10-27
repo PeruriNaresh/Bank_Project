@@ -1,0 +1,82 @@
+<%@page import="com.mysql.cj.xdevapi.Table"%>
+<%@page import="bank_dto.Bank"%>
+<%@page import="bank_dto.TransactionsDto"%>
+<%@page import="java.util.LinkedList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+	table
+	{
+		border:1px solid black;
+		border-collapse:collapse;
+	}
+	tr
+	{
+		border:1px solid black;
+		border-collapse:collapse;
+	}
+	td	
+	{
+		padding:1vh 3vw;
+		border:1px solid black;
+		border-collapse:collapse;
+	}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div id="container" style="background-color:blue;width:30vw;height:50vh">
+	<h1>Transaction History</h1>
+	<%LinkedList<TransactionsDto> rs=(LinkedList<TransactionsDto>)session.getAttribute("transactions"); 
+	Bank bank =(Bank)session.getAttribute("bank");
+	if(bank==null || bank.getAccountnumber()==0)
+	{
+		out.println("no account attached");
+	}
+	else if(rs!=null)
+	{
+		boolean has=false;
+		%>
+		<table>
+			<tr>
+				<td>Sender account number</td>
+				<td>reciver account number</td>
+				<td>amount</td>
+				<td>cr/dr</td>
+				<td>date</td>
+				<td>time</td>
+			</tr>
+		<%
+		for(TransactionsDto transaction:rs)
+		{
+			has=true;
+		%>
+			<tr style="border">
+				<td><%=transaction.getSenderAccount()%></td>
+				<td><%=transaction.getRecieverAccount()%></td>
+				<td><%=transaction.getAmount()%></td>
+				<%if(bank.getAccountnumber()==transaction.getSenderAccount())
+				{out.println("<td>dr</td>");
+				}
+				else
+				{out.println("<td>cr</td>");
+				}%>
+				<td><%=transaction.getDate()%></td>
+				<td><%=transaction.getTime()%></td>
+			</tr>
+		<%}%>
+		</table>
+		<%
+		if(has==false)
+		{
+			out.println("no transactions made");
+		}
+	}%>
+	</div>
+</body>
+</html>

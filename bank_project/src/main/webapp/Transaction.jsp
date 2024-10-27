@@ -21,11 +21,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
 }
 
 .form-container {
-    background: white;
+	
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);	
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);

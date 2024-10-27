@@ -8,20 +8,23 @@
         body
         {
             width: 100%;
-            height: 100%;
+            height: 100vh;
             overflow: hidden;
-            background: linear-gradient(to right, black, purple );
+            position: relative;
+            background-image: url(./bank.jpg);
+            background-size: cover;
         }
-        .form-container {
+        .form-container{
         width: 25vw;
+        height: 62vh;
         border-radius: 0.75rem;
-        background-color: rgba(17, 24, 39, 1);
+        background-color: rgba(17, 24, 39, 0.829);
+        position: relative;
         padding: 2rem;
         color: rgba(243, 244, 246, 1);
-        margin: 7% 35%;
+        margin: 6% 60%;
         box-shadow: 0px 0px 10px white;
         }
-
         .title {
         text-align: center;
         color:  rgba(167, 139, 250, 1);
@@ -136,7 +139,35 @@
         line-height: 1rem;
         color: rgba(156, 163, 175, 1);
         }
-
+        #left
+        {
+            height: 100vh;
+            width: 65%;
+            position: absolute;
+            transform: translateY(-13vh);
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #left div
+        {
+            width: 50%;
+            height: 60%;
+            margin-left: 10vw;
+            margin-top: 18vh;
+            backdrop-filter: blur(25px);
+            box-shadow: 0px 0px 5px white;
+        }
+        #left div>h2
+        {
+            padding: 5vh;
+            background-color: rgba(17, 24, 39, 0.674);
+            color:  rgba(167, 139, 250, 1);
+        }
+        #left div>h4
+        {
+            padding: 10px;
+            color:  black;
+        }
     </Style>
     <title>Login</title>
     <script type="text/javascript">
@@ -150,6 +181,12 @@
     </script>
 </head>
 <body>
+	<div id="left">
+        <div>
+            <h2>WELCOME TO OUR BANK PORTAL</h2>
+            <h4>Welcome to Online Banking Portal! Our secure and user-friendly platform allows you to manage your finances with ease. Whether you need to check your balance, transfer funds, or view your transaction history, everything is just a click away. Please enter your login credentials to access your account and enjoy safe, convenient, and efficient banking services.</h4>
+        </div>
+    </div>
     <div class="form-container">
         <p class="title">Login</p>
         <form class="form" action="signin" method="post">

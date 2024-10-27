@@ -15,7 +15,6 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, white);
     display: flex;
     justify-content: center;
     align-items: center;

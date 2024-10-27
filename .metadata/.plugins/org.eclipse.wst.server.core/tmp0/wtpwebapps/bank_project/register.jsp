@@ -11,9 +11,11 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: linear-gradient(to right, black, purple );
+            background: url(bank.jpg);
+            background-size:cover;
         }
-        .form {
+        .form 
+        {
         display: flex;
         width: 35%;
         flex-direction: column;
@@ -22,7 +24,7 @@
         padding: 25px 30px;
         border-radius: 20px;
         position: relative;
-        background-color: rgba(17, 24, 39, 1);
+        background-color: rgba(17, 24, 39, 0.8);
         box-shadow: 0px 0px 10px white;
         color: #fff;
         border: 1px solid #333;

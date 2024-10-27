@@ -3,270 +3,313 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Home page</title>
-</head>
-<style>
-* {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Webpage</title>
+    <style>
+        body {
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-header {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    background-color: #333;
-    display: flex;
-    justify-content: space-between; /* Space between navbar and welcome text */
-    align-items: center; /* Center align items vertically */
-    padding: 10px; /* Added padding to header */
-}
-
-.welcome-text {
-    color: white; /* Color of welcome text */
-    font-size: 18px; /* Font size of welcome text */
-    margin-left: 20px; /* Space on the left of welcome text */
+    min-height: 100vh;
 }
 
 .navbar {
     display: flex;
-    justify-content: flex-end; /* Aligns items to the right */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.nav-item {
-    position: relative;
-    margin-left: 20px; /* Adds space between nav items */
+.navbar-left .username {
+    color: #ecf0f1;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.nav-btn {
-    background-color: #ff7e5f;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.nav-btn:hover {
-    background-color: #feb47b;
-}
-
-.nav-links {
-    display: none;
-    flex-direction: column;
-    background-color: #444;
-    position: absolute;
-    top: 40px;
-    padding: 10px;
-    border-radius: 5px;
-    width: 250px; /* Increased width for dropdown */
-}
-
-.nav-item:hover .nav-links {
+.navbar-center {
+    flex: 1;
     display: flex;
-}
-
-.nav-links button {
-    background-color: #ff7e5f;
-    border: none;
-    color: white;
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.nav-links button:hover {
-    background-color: #feb47b;
-}
-
-/* Styles for password input */
-.password-input 
-{
-    display: none; /* Hide by default */
-}
-
-.nav-item:hover .password-input {
-	height:20vh;
-    display: flex; /* Show password input on hover */
-    transform: translateX(-7vw);
-}
-
-.password-input label {
-    color: white; /* Label color */
-    margin-bottom: 5px; /* Space below label */
-}
-
-.password-input input {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 100%; /* Full width */
-}
-
-.main {
-    text-align: center;
-    margin-top: 100px;
-}
-
-h1 {
-    color: white;
-    font-size: 48px;
-    margin-bottom: 40px;
+    justify-content: flex-end;
+    padding: 0 20px;
 }
 
 .search-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.search-bar input {
-    padding: 10px;
+    padding: 8px;
+    font-size: 16px;
     width: 300px;
-    border-radius: 5px 0 0 5px;
-    border: none;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px; /* Reduced border radius */
     outline: none;
+    transform: translateX(1.8vw);
+    transition: border-color 0.3s;
 }
 
-.search-bar button {
-    padding: 10px;
+.search-bar:focus {
+    border-color: #3498db;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.dropdown {
+    position: relative;
+    margin-left: 25px;
+}
+.main-button, .submenu-button {
+    background-color: rgba(167, 139, 250, 1);
+    color: #ffffff;
     border: none;
-    background-color: #ff7e5f;
-    color: white;
-    border-radius: 0 5px 5px 0;
+    padding: 10px 20px; /* Adjusted padding for consistency */
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 16px;
+    border-radius: 5px; /* Reduced border radius */
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.search-bar button:hover {
-    background-color: #feb47b;
+.main-button:hover, .submenu-button:hover {
+    background-color: rgba(141, 113, 230, 1);
+    transform: scale(1.05);
 }
 
-.create-account button {
-    padding: 15px 30px;
-    background-color: #ff7e5f;
-    color: white;
-    border: none;
+.dropdown-content, .submenu-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s;
+    transform: translate(-3vw,0.3vh);
 }
 
-.create-account button:hover {
-    background-color: #feb47b;
+.dropdown-content span {
+    color: #2c3e50;
+    padding: 10px 15px;
+    font-size: 15px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .submenu-content {
+    top: 0;
+    left: 200px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.dropdown-content .submenu-content {
+    display: none;
+    border-top: 1px solid #ddd;
+}
+
+.dropdown-content span:hover + .submenu-content {
+    display: block;
+}
+
+.dropdown-submenu:hover .submenu-content {
+    display: block;
+}
+
+.submit-button {
+    background-color: rgba(167, 139, 250, 1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px 30%;
+    border-radius: 5px; /* Reduced border radius */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+    background-color: rgba(141, 113, 230, 1);
+    transform: scale(1.05);
+}
+
+.content {
+    flex: 1;
+    text-align: center;
+    padding: 50px 30px;
+    background-size: 100% 80vh;
+    background-position: 0px 0vh;
+    background-color: #ffffff;
+    background-image: url(bankin.jpg);
+    background-size: 103vw 94vh;
+    background-position:-1.5vw 0vh;
+}
+
+.content h1 {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.content p {
+    color: #7f8c8d;
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.create-account-button {
+    background-color: rgba(167, 139, 250, 1);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px; /* Reduced border radius */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.create-account-button:hover {
+    background-color: rgba(141, 113, 230, 1);
+    transform: scale(1.05);
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+.submenu-button
+{   
+    width: 90%;
+    display: inline;
+    margin: 4% 6% ;
 }
 #trans
 {
-	transform:translate(-19vw,-2vh);
-	display:none;
+    transform: translateX(-28.8vw);
+    display: none;
 }
 #trans:hover
 {
-	display:inline;
+    display: block;
 }
-#transout:hover+#trans
+#transaction:hover+#trans
 {
-	display:inline;
+    display: block;
 }
-
-</style>
+#search
+{
+    margin-left: 1vw;
+    background-color:skyblue;
+    border-radius:25px;
+    color:black;
+    transform: translateX(1.5vw);
+}
+a
+{
+	text-decoration:none;
+}
+#password
+{
+    margin: 7% 5%;
+    padding: 4% 2.5%;
+    border-radius: 5px;
+    border: 0.5px solid gray;
+    outline: 0.5px solid gray;
+}
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<header>
-	<%User user=(User)session.getAttribute("user");
-	String name=user.getName();%>
-    <div class="welcome-text">Welcome <%=name%></div> <!-- Added welcome text -->
     <div class="navbar">
-	    <div class="search-bar nav-items">
-	        <input type="text" placeholder="Search...">
-	        <button>Search</button>
-	    </div>
-        <div class="nav-item">
-            <button class="nav-btn">☰ Menu</button>
-            <div class="nav-links">
-                <a href="Profile.jsp"><button>Profile</button></a>
-                <a href="Update.jsp"><button>Update</button></a>
-                <a href="Delete.jsp"><button>Delete</button></a>
-                <a href="index.jsp"><button onclick="fun()">Logout</button></a>
-            </div>
+        <%User user=(User)session.getAttribute("user");
+	    String name=user.getName();%>
+        <div class="navbar-left">
+            <span class="username">WELCOME, <%=name%></span>
         </div>
-        <div class="nav-item">
-        
-            <button class="nav-btn">Account</button>
-            <div class="nav-links">
-                <a href="accountdetails.jsp"><button>Account Details</button></a>
-                <button id="transout">Transaction</button>
-                <div id="trans" class="nav-links">
-                	<a href="Transaction.jsp"><button>To Other Account</button></a>
-                	<button>To Self Account</button>
+        <div class="navbar-center">
+            <input type="text" class="search-bar" placeholder="Search...">
+            <button class="main-button" id="search">Search</button>
+        </div>
+        <div class="navbar-right">
+            <div class="dropdown">
+                <button class="main-button">Menu</button>
+                <div class="dropdown-content">
+                    <a href="Profile.jsp"><button class="submenu-button">Profile</button></a>
+                    <a href="Update.jsp"><button class="submenu-button">Update</button></a>
+                    <a href="Delete.jsp"><button class="submenu-button">Delete</button></a>
+                    <a href="index.jsp"><button class="submenu-button">Logout</button></a>
                 </div>
-                <a href="history"><button>History</button></a>
             </div>
-        </div>
-        <div class="nav-item">
-            <button class="nav-btn">Balance Enquiry</button> <!-- New Balance Enquiry button -->
-            <div class="nav-links password-input">
-            	<%String pass= ((User)session.getAttribute("user")).getPassword();
-            	Bank bank=(Bank)session.getAttribute("bank");
-            	int balance=bank.getBalance();
-            	long account=bank.getAccountnumber();
-            	if(account>0)
-            	{%>
-	                <label for="password" id="lab">Enter the Password:</label>
-		            <input type="password" id="password" name="pass" placeholder="Password">
-		            <h2 id="bal" style="display:none;color:white">₹ <%=balance%>. INR</h2>
-		            <button id="sub" onclick="fun1(<%=pass%>)">Submit</button>
-	            <%}
-	            else
-	            {
-	            	out.println("<h3 style='color:white'>no account to fetch balance from</h3>");
-	            }%>
+            <div class="dropdown">
+                <button class="main-button">Account</button>
+                <div class="dropdown-content">
+                    <a href="accountdetails.jsp"><button class="submenu-button">Account Details</button></a>
+                    <div class="dropdown-submenu">
+                        <button id="transaction" class="submenu-button">tranaction</button>
+                        <div id="trans" class="submenu-content">
+                            <a href="selftransfer.jsp"><button class="submenu-button">To Self Account</button></a>
+                            <a href="Transaction.jsp"><button class="submenu-button">To Other Accounts</button></a>
+                        </div>
+                    </div>
+                    <a href="history"><button class="submenu-button">History</button></a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="main-button">Balance Enquiry</button>
+                <div class="dropdown-content">
+                    <%String pass= ((User)session.getAttribute("user")).getPassword();
+                    Bank bank=(Bank)session.getAttribute("bank");
+                    int balance=bank.getBalance();
+                    long account=bank.getAccountnumber();
+                    if(account>0)
+                    {%>
+                    <input type="password" id="password" placeholder="Enter Password"/>
+                    <h2 id="bal" style="display:none;">₹ <%=balance%>. INR</h2>
+                    <button class="submit-button" id="sub" onclick="fun1(<%=pass%>)">Submit</button>
+                    <%}
+                    else
+                    {
+                        out.println("<h3 style='padding:4%'>no account to fetch balance from</h3>");
+                    }%>
+                </div>
             </div>
         </div>
     </div>
-</header>
 
-<div class="main">
-    <h1>Welcome to Our Homepage</h1>
-    <%String status= (String)session.getAttribute("status");
+    <div class="content">
+        <h1>Welcome to Our Banking Service</h1>
+        <p>Your reliable partner for all your banking needs.</p>
+        <%String status= (String)session.getAttribute("status");
 		if(status!="created")
 		{
-	%>
-    <div class="create-account">
-        <a href="bankaccount.jsp"><button>Create Account</button></a>
+		%>
+        <a href="bankaccount.jsp"><button class="create-account-button">Create Account</button></a>
+        <% }%>
     </div>
-    <% }%>
-</div>
+
+    <div class="footer">
+        <p>Contact Details: Email - naresh@gmail.com | Phone - +83338 *****</p>
+    </div>
 <script>
 	function fun1(pass)
 	{
 		var password=document.getElementById("password");
 		var sub=document.getElementById("sub");
 		var bal=document.getElementById("bal");
-		var lab=document.getElementById("lab");
 		if(pass==password.value)
 		{
-			lab.style.display="none";
 			password.style.display="none";
 			bal.style.display="block";
 			sub.style.display="none";
