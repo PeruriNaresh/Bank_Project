@@ -26,7 +26,6 @@ INDEX VERSION 1.134+D:\Bank_Project\.metadata\.plugins\org.eclipse.jdt.core
 2303242266.index
 1549111809.index
 3233534750.index
-3870733863.index
 925463331.index
 734897449.index
 1993318730.index
