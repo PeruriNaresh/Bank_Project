@@ -175,7 +175,7 @@
         }
         }
     </style>
-    <title>Document</title>
+    <title>User Registration</title>
 </head>
 <body>
     
@@ -191,7 +191,7 @@
             <label for="age">Age</label>
             <input type="number" name="age" id="age" placeholder="Enter your age" min=18 required>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter password" required>
+            <input type="password" name="password" id="password" minlength=8 placeholder="Enter password" required>
             <label for="confirm">Password</label>
             <input type="password" id="confirm" placeholder="confirm password" required>
             <p style="opacity:0;display:inline" id="msg">passwords doesnot match</p>

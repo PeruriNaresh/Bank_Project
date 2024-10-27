@@ -15,7 +15,7 @@ import bank_dao.BankDao;
 import bank_dao.UserDao;
 import bank_dto.Bank;
 
-@WebServlet("/signin")
+@WebServlet("/login")
 public class Login extends HttpServlet
 {
 	@Override

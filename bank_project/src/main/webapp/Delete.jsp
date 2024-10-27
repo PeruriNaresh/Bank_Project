@@ -51,6 +51,7 @@ input[type="password"] {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color:transparent;
     font-size: 14px;
 }
 
@@ -74,9 +75,9 @@ input[type="submit"] {
         <h1>Delete Profile</h1>
         <form action="delete" method="post">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="enter email" required>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="enter password" required>
             <% String msg=(String)request.getAttribute("msg"); 
             if(msg!=null)
             {

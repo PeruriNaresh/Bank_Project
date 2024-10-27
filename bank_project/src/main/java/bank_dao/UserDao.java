@@ -49,6 +49,9 @@ public class UserDao
 	}
 	public static int login(String email, String password) throws ClassNotFoundException, SQLException {
 		Connection connection=createConnection();
+		PreparedStatement ps1=connection.prepareStatement("create table if not exists user_details(id int auto_increment primary key, name varchar(50),mobile bigint,email varchar(50) unique,age int,password varchar(50))");
+		ps1.execute();
+		ps1.close();
 		PreparedStatement ps=connection.prepareStatement("select email,password from user_details where email=?");
 		ps.setString(1, email);
 		ResultSet res=ps.executeQuery();

@@ -228,6 +228,10 @@ a
     border: 0.5px solid gray;
     outline: 0.5px solid gray;
 }
+#balance
+{
+transform:translateX(-7vw);
+}
     </style>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -267,8 +271,8 @@ a
                 </div>
             </div>
             <div class="dropdown">
-                <button class="main-button">Balance Enquiry</button>
-                <div class="dropdown-content">
+                <button class="main-button">Balance</button>
+                <div id="balance" class="dropdown-content">
                     <%String pass= ((User)session.getAttribute("user")).getPassword();
                     Bank bank=(Bank)session.getAttribute("bank");
                     int balance=bank.getBalance();
@@ -277,7 +281,7 @@ a
                     {%>
                     <input type="password" id="password" placeholder="Enter Password"/>
                     <h2 id="bal" style="display:none;">₹ <%=balance%>. INR</h2>
-                    <button class="submit-button" id="sub" onclick="fun1(<%=pass%>)">Submit</button>
+                    <button class="submit-button" id="sub" onclick="fun1('<%=pass%>')">Submit</button>
                     <%}
                     else
                     {
@@ -308,7 +312,7 @@ a
 		var password=document.getElementById("password");
 		var sub=document.getElementById("sub");
 		var bal=document.getElementById("bal");
-		if(pass==password.value)
+		if(pass===password.value)
 		{
 			password.style.display="none";
 			bal.style.display="block";

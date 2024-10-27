@@ -22,6 +22,7 @@ public class TransactionsDao
 		Connection c=createConnection();
 		PreparedStatement ps=c.prepareStatement("create table if not exists transactions(id int auto_increment primary key,sender bigint,reciever bigint,amount int,date varchar(20), time varchar(20))");
 		ps.execute();
+		ps.close();
 		PreparedStatement ps2=c.prepareStatement("insert into transactions(sender,reciever,amount,date,time) value(?,?,?,?,?)");
 		ps2.setLong(1, transaction.getSenderAccount());
 		ps2.setLong(2, transaction.getRecieverAccount());
@@ -36,6 +37,9 @@ public class TransactionsDao
 	{
 		LinkedList<TransactionsDto> tr=new LinkedList<TransactionsDto>();
 		Connection c=createConnection();
+		PreparedStatement ps1=c.prepareStatement("create table if not exists transactions(id int auto_increment primary key,sender bigint,reciever bigint,amount int,date varchar(20), time varchar(20))");
+		ps1.execute();
+		ps1.close();
 		PreparedStatement ps=c.prepareStatement("select * from transactions where sender=? or reciever=?");
 		ps.setLong(1, sender);
 		ps.setLong(2, sender);

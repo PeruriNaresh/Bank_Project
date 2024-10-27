@@ -42,6 +42,7 @@ public class BankDao {
 	}
 	public static Bank getBank(long mobile) throws Exception
 	{
+		createtable();
 		Connection con=CreationofStatement();
 		PreparedStatement ps=con.prepareStatement("select * from bank_details where phone_number=?");
 		ps.setLong(1, mobile);

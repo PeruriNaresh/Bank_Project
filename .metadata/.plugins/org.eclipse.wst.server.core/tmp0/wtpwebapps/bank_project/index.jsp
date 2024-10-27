@@ -189,7 +189,7 @@
     </div>
     <div class="form-container">
         <p class="title">Login</p>
-        <form class="form" action="signin" method="post">
+        <form class="form" action="login" method="post">
             <div class="input-group">
                 <label for="username">Email</label>
                 <input type="text" name="email" id="username" placeholder="Enter your email" required>

@@ -31,7 +31,7 @@
 		display:inline;
 		padding:3vh 0vw;
 		positon:relative;
-		color: rgba(243, 244, 246, 1);
+        color: rgba(167, 139, 250, 1);
 	}
 	h3
 	{
@@ -42,14 +42,6 @@
 		border-radius:30px;
 		padding-top:1vh;
 		margin-left:5%;
-		transition:all 0.5	s ease;
-	}
-	h3:hover
-	{
-		transform:translateY(-1vh);
-		color:black;
-		background-color:white;
-		box-shadow:0px 5px 5px white;
 	}
 	img
 	{
