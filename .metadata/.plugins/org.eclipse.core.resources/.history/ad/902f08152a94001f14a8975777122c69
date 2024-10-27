@@ -197,6 +197,7 @@ h1 {
 	String name=user.getName();%>
     <div class="welcome-text">Welcome <%=name%></div> <!-- Added welcome text -->
     <div class="navbar">
+    	
 	    <div class="search-bar nav-items">
 	        <input type="text" placeholder="Search...">
 	        <button>Search</button>

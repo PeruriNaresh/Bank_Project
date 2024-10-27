@@ -197,10 +197,6 @@ h1 {
 	String name=user.getName();%>
     <div class="welcome-text">Welcome <%=name%></div> <!-- Added welcome text -->
     <div class="navbar">
-	    <div class="search-bar nav-items">
-	        <input type="text" placeholder="Search...">
-	        <button>Search</button>
-	    </div>
         <div class="nav-item">
             <button class="nav-btn">☰ Menu</button>
             <div class="nav-links">
@@ -211,7 +207,6 @@ h1 {
             </div>
         </div>
         <div class="nav-item">
-        
             <button class="nav-btn">Account</button>
             <div class="nav-links">
                 <a href="accountdetails.jsp"><button>Account Details</button></a>
@@ -248,6 +243,10 @@ h1 {
 
 <div class="main">
     <h1>Welcome to Our Homepage</h1>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
     <%String status= (String)session.getAttribute("status");
 		if(status!="created")
 		{
